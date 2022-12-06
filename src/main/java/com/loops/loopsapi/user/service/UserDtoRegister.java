@@ -7,9 +7,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 
 /**
  * A DTO for the {@link User} entity
@@ -41,8 +44,11 @@ public class UserDtoRegister {
     @NotEmpty
     private String gender;
 
+    @Column(columnDefinition = "decimal(19,2)")
+    private BigDecimal balance = BigDecimal.ZERO;
+
     static UserDtoRegister fromUser (User user) {
-        return new UserDtoRegister(user.getId(), user.getName(), user.getEmail(), null, user.getPhoneNumber(), user.getGender());
+        return new UserDtoRegister(user.getId(), user.getName(), user.getEmail(), null, user.getPhoneNumber(), user.getGender(),user.getBalance());
     }
 
     User toEntity(String encryptedPassword){
@@ -52,6 +58,7 @@ public class UserDtoRegister {
                 .password(encryptedPassword)
                 .phoneNumber(phoneNumber)
                 .gender(gender)
+                .balance(balance)
                 .build();
     }
 }

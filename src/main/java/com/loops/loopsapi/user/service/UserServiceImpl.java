@@ -3,6 +3,7 @@ package com.loops.loopsapi.user.service;
 import com.loops.loopsapi.user.persistence.User;
 import com.loops.loopsapi.user.persistence.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -15,12 +16,13 @@ import javax.validation.Valid;
 @Validated
 public class UserServiceImpl implements UserService{
 
+    @Autowired
     private final UserRepository userRepository;
 
     private final BCryptPasswordEncoder passwordEncoder;
 
-    private void validateUserExist(String username) throws IllegalAccessException {
-        if (userRepository.existsByEmail(username)){
+    private void validateUserExist(String email) throws IllegalAccessException {
+        if (userRepository.existsByEmail(email)){
             throw new IllegalAccessException("Username is already exist");
         }
     }
@@ -53,5 +55,4 @@ public class UserServiceImpl implements UserService{
                 .map(UserDtoRegister::fromUser)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
-
 }

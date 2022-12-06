@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Entity
 @Data
@@ -31,5 +32,7 @@ public class User implements Serializable {
     private String phoneNumber;
 
     private String gender;
+
+    private BigDecimal balance;
 
 }
