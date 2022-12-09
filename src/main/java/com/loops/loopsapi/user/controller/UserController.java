@@ -2,6 +2,7 @@ package com.loops.loopsapi.user.controller;
 
 import com.loops.loopsapi.user.service.UserDtoLogin;
 import com.loops.loopsapi.user.service.UserDtoRegister;
+import com.loops.loopsapi.user.service.UserDtoUpdate;
 import com.loops.loopsapi.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,4 +30,9 @@ public class UserController {
 
     @GetMapping("/{id}")
     public UserDtoRegister findById(@PathVariable Long id){ return userService.findById(id);}
+
+    @PutMapping("/update/{id}")
+    public  String updateUser(@PathVariable Long id, @RequestBody UserDtoUpdate userDtoUpdate){
+        return userService.updateUser(id, userDtoUpdate);
+    }
 }

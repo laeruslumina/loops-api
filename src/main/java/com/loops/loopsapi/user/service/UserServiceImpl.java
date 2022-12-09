@@ -55,4 +55,40 @@ public class UserServiceImpl implements UserService{
                 .map(UserDtoRegister::fromUser)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
+
+    @Override
+    public String updateUser(Long id, UserDtoUpdate userDtoUpdate) {
+        User original = userRepository.findById(id).
+                orElseThrow(() -> new EntityNotFoundException("User not found"));
+            if (userDtoUpdate.getName() != null){
+                original.setName(userDtoUpdate.getName());
+            }
+            if (userDtoUpdate.getEmail() != null){
+                original.setEmail(userDtoUpdate.getEmail());
+            }
+            if (userDtoUpdate.getPhoneNumber() != null){
+                original.setPhoneNumber(userDtoUpdate.getPhoneNumber());
+            }
+            if (userDtoUpdate.getAddress() != null){
+                original.setAddress(userDtoUpdate.getAddress());
+            }
+            if (userDtoUpdate.getAddressAlter() != null){
+                original.setAddressAlter(userDtoUpdate.getAddressAlter());
+            }
+            if (userDtoUpdate.getProvince() != null){
+                original.setProvince(userDtoUpdate.getProvince());
+            }
+            if (userDtoUpdate.getCities() != null){
+                original.setCities(userDtoUpdate.getCities());
+            }
+            if (userDtoUpdate.getPostalCode() != null){
+                original.setPostalCode(userDtoUpdate.getPostalCode());
+            }
+            if (userDtoUpdate.getCountry() != null){
+                original.setCountry(userDtoUpdate.getCountry());
+            }
+
+            userRepository.save(original);
+        return "Success";
+    }
 }

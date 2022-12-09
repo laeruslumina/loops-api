@@ -1,11 +1,7 @@
 package com.loops.loopsapi.user.service;
 
-import com.loops.loopsapi.topup.service.TopUpDto;
-import com.loops.loopsapi.user.persistence.User;
 
 import javax.validation.Valid;
-import java.math.BigDecimal;
-import java.util.List;
 
 public interface UserService {
 
@@ -14,4 +10,6 @@ public interface UserService {
     boolean isUserValidLogin(UserDtoLogin userDtoLogin);
 
     UserDtoRegister findById(Long id);
+
+    String updateUser(Long id,UserDtoUpdate userDtoUpdate);
 }
