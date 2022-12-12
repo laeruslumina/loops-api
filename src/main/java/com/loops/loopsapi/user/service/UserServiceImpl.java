@@ -60,33 +60,26 @@ public class UserServiceImpl implements UserService{
     public String updateUser(Long id, UserDtoUpdate userDtoUpdate) {
         User original = userRepository.findById(id).
                 orElseThrow(() -> new EntityNotFoundException("User not found"));
-            if (userDtoUpdate.getName() != null){
-                original.setName(userDtoUpdate.getName());
-            }
-            if (userDtoUpdate.getEmail() != null){
-                original.setEmail(userDtoUpdate.getEmail());
-            }
-            if (userDtoUpdate.getPhoneNumber() != null){
-                original.setPhoneNumber(userDtoUpdate.getPhoneNumber());
-            }
-            if (userDtoUpdate.getAddress() != null){
-                original.setAddress(userDtoUpdate.getAddress());
-            }
-            if (userDtoUpdate.getAddressAlter() != null){
-                original.setAddressAlter(userDtoUpdate.getAddressAlter());
-            }
-            if (userDtoUpdate.getProvince() != null){
-                original.setProvince(userDtoUpdate.getProvince());
-            }
-            if (userDtoUpdate.getCities() != null){
-                original.setCities(userDtoUpdate.getCities());
-            }
-            if (userDtoUpdate.getPostalCode() != null){
-                original.setPostalCode(userDtoUpdate.getPostalCode());
-            }
-            if (userDtoUpdate.getCountry() != null){
-                original.setCountry(userDtoUpdate.getCountry());
-            }
+//         Normal if - else
+//            if (userDtoUpdate.getName() != null){original.setName(userDtoUpdate.getName());}
+//            Using ternary
+            original.setName(userDtoUpdate.getName() != null ? userDtoUpdate.getName() : original.getName());
+//            if (userDtoUpdate.getEmail() != null){original.setEmail(userDtoUpdate.getEmail());}
+            original.setEmail(userDtoUpdate.getEmail() != null ? userDtoUpdate.getEmail() : original.getEmail());
+//            if (userDtoUpdate.getPhoneNumber() != null){original.setPhoneNumber(userDtoUpdate.getPhoneNumber());}
+            original.setPhoneNumber(userDtoUpdate.getPhoneNumber() != null ? userDtoUpdate.getPhoneNumber() : original.getPhoneNumber());
+//            if (userDtoUpdate.getAddress() != null){original.setAddress(userDtoUpdate.getAddress());}
+            original.setAddress(userDtoUpdate.getAddress() != null ? userDtoUpdate.getAddress() : original.getAddress());
+//            if (userDtoUpdate.getAddressAlter() != null){original.setAddressAlter(userDtoUpdate.getAddressAlter());}
+            original.setAddressAlter(userDtoUpdate.getAddressAlter() != null ? userDtoUpdate.getAddressAlter() : original.getAddressAlter());
+//            if (userDtoUpdate.getProvince() != null){original.setProvince(userDtoUpdate.getProvince());}
+            original.setProvince(userDtoUpdate.getProvince() != null ? userDtoUpdate.getProvince() : original.getProvince());
+//            if (userDtoUpdate.getCities() != null){original.setCities(userDtoUpdate.getCities());}
+            original.setCities(userDtoUpdate.getCities() != null ? userDtoUpdate.getCities() : original.getCities());
+//            if (userDtoUpdate.getPostalCode() != null){original.setPostalCode(userDtoUpdate.getPostalCode());}
+            original.setPostalCode(userDtoUpdate.getPostalCode() != null ? userDtoUpdate.getPostalCode() : original.getPostalCode());
+//            if (userDtoUpdate.getCountry() != null){original.setCountry(userDtoUpdate.getCountry());}
+            original.setCountry(userDtoUpdate.getCountry() != null ? userDtoUpdate.getCountry() : original.getCountry());
 
             userRepository.save(original);
         return "Success";

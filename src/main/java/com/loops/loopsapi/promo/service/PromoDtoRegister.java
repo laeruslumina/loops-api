@@ -20,7 +20,7 @@ public class PromoDtoRegister {
     private String promoName;
     private String promoDetails;
 
-    static PromoDtoRegister fromUser(Promo promo){
+    static PromoDtoRegister fromPromo(Promo promo){
         return new PromoDtoRegister(promo.getPromoId(), promo.getPromoName(), promo.getPromoDetails());
     }
 

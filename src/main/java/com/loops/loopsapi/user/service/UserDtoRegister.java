@@ -24,7 +24,7 @@ import java.math.BigDecimal;
 public class UserDtoRegister {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Long id;
+    private Long userId;
 
     @NotEmpty
     private String name;
@@ -48,7 +48,7 @@ public class UserDtoRegister {
     private BigDecimal balance = BigDecimal.ZERO;
 
     static UserDtoRegister fromUser (User user) {
-        return new UserDtoRegister(user.getId(), user.getName(), user.getEmail(), null, user.getPhoneNumber(), user.getGender(),user.getBalance());
+        return new UserDtoRegister(user.getUserId(), user.getName(), user.getEmail(), null, user.getPhoneNumber(), user.getGender(),user.getBalance());
     }
 
     User toEntity(String encryptedPassword){

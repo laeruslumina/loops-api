@@ -20,7 +20,7 @@ public class PromoServiceImpl implements PromoService{
 
     @Override
     public PromoDtoRegister createPromo(PromoDtoRegister promoDtoRegister) {
-        return PromoDtoRegister.fromUser(savePromo(promoDtoRegister));
+        return PromoDtoRegister.fromPromo(savePromo(promoDtoRegister));
     }
 
     @Override
