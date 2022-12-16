@@ -29,12 +29,14 @@ public class UserServiceImpl implements UserService{
 
     private User saveUser(UserDtoRegister userDtoRegister){
         String encryptedPassword = passwordEncoder.encode(userDtoRegister.getPassword());
-
+        //better di lihatkan
         return userRepository.save(userDtoRegister.toEntity(encryptedPassword));
     }
 
     @Override
     public UserDtoRegister registerUser(@Valid UserDtoRegister userDtoRegister) throws IllegalAccessException {
+        //Diliatin prosesnya
+
         validateUserExist(userDtoRegister.getEmail());
         User user = saveUser(userDtoRegister);
 
@@ -58,8 +60,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public String updateUser(Long id, UserDtoUpdate userDtoUpdate) {
-        User original = userRepository.findById(id).
-                orElseThrow(() -> new EntityNotFoundException("User not found"));
+        User original = userRepository.findById(id).orElse(null);
+            if (original != null){
 //         Normal if - else
 //            if (userDtoUpdate.getName() != null){original.setName(userDtoUpdate.getName());}
 //            Using ternary
@@ -80,7 +82,9 @@ public class UserServiceImpl implements UserService{
             original.setPostalCode(userDtoUpdate.getPostalCode() != null ? userDtoUpdate.getPostalCode() : original.getPostalCode());
 //            if (userDtoUpdate.getCountry() != null){original.setCountry(userDtoUpdate.getCountry());}
             original.setCountry(userDtoUpdate.getCountry() != null ? userDtoUpdate.getCountry() : original.getCountry());
-
+            } else {
+                new EntityNotFoundException("Data does not exist");
+            }
             userRepository.save(original);
         return "Success";
     }

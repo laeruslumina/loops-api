@@ -17,8 +17,8 @@ public class TopUpController {
         return topUpService.addBalance(id, topUpDto);
     }
 
-    @PutMapping("/substract/{id}")
-    public String substractBalance (@PathVariable Long id, @RequestBody TopUpDto topUpDto){
+    @PutMapping("/substract")
+    public String substractBalance (Long id, @RequestBody TopUpDto topUpDto){ //Lebih efisien id dimasukan DTO
         return topUpService.decreaseBalance(id, topUpDto);
     }
 

@@ -1,6 +1,7 @@
 package com.loops.loopsapi.user.persistence;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.loops.loopsapi.history.pesistence.entity.Invoice;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Data
@@ -53,4 +55,8 @@ public class User implements Serializable {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String country;
+
+    @OneToMany (mappedBy = "user")
+    private List<Invoice> invoice;
+
 }

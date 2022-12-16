@@ -12,6 +12,8 @@ import java.math.BigDecimal;
 @Data
 public class TopUpDto {
 
+    private Long userId;
+
     private BigDecimal balance;
 
 }

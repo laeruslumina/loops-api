@@ -31,11 +31,11 @@ public class TopUpServiceImpl implements TopUpService {
         User original = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User does not exist"));
         if (original.getBalance().compareTo(topUpDto.getBalance()) >= 0){
-            original.setBalance(original.getBalance().subtract(topUpDto.getBalance()));
+            original.setBalance(original.getBalance().subtract(topUpDto.getBalance()));// amount tidak boleh kosong, amount tidak cukup, success transaksi
             userRepository.save(original);
             return "Success";
         }
 
-        return "Error";
+        return "Balance not enough";
     }
 }

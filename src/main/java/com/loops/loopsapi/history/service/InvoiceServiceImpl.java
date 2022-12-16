@@ -2,7 +2,8 @@ package com.loops.loopsapi.history.service;
 
 import com.loops.loopsapi.history.pesistence.entity.Invoice;
 import com.loops.loopsapi.history.pesistence.repository.InvoiceRepository;
-import com.loops.loopsapi.payment.service.MerchantDtoGet;
+import com.loops.loopsapi.user.service.UserDtoRegister;
+import com.loops.loopsapi.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,8 +16,7 @@ import java.math.BigDecimal;
 @Service
 @RequiredArgsConstructor
 public class InvoiceServiceImpl implements InvoiceService{
-
-
+    private final UserService userService;
     private final InvoiceRepository invoiceRepository;
 
     private BigDecimal getTotalPrice (InvoiceDtoRegister invoiceDtoRegister){
@@ -25,13 +25,15 @@ public class InvoiceServiceImpl implements InvoiceService{
     }
 
     private Invoice saveInvoice(InvoiceDtoRegister invoiceDtoRegister){
-        return invoiceRepository.save(invoiceDtoRegister.toEntity());
+        Invoice save = invoiceRepository.save(invoiceDtoRegister.toEntity());
+        return save;
     }
 
     @Override
     public InvoiceDtoRegister createInvoice(InvoiceDtoRegister invoiceDtoRegister) {
         BigDecimal totalPrice = getTotalPrice(invoiceDtoRegister);
         invoiceDtoRegister.setTotalPrice(totalPrice);
+
 
         return InvoiceDtoRegister.fromInvoice(saveInvoice(invoiceDtoRegister));
     }
