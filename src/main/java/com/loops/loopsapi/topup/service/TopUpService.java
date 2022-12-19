@@ -1,9 +1,11 @@
 package com.loops.loopsapi.topup.service;
 
+import java.math.BigDecimal;
+
 public interface TopUpService {
 
-    String addBalance (Long id,TopUpDto topUpDto);
+    void addBalance (Long id,BigDecimal input);
 
-    String decreaseBalance (Long id, TopUpDto topUpDto);
+    void decreaseBalance (Long id, BigDecimal input);
 
 }

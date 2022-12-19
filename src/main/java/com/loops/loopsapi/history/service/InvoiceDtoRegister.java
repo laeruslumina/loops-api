@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -24,18 +26,22 @@ public class InvoiceDtoRegister implements Serializable {
 
     private Long invoiceId;
     private Long userId; //dari FE kirim user ID
-    private String merchantTopUpName;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String merchantName;
+    private Long merchantTopUpId;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Long merchantId;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private BigDecimal basePrice;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private BigDecimal discount;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private BigDecimal totalPrice;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
     static InvoiceDtoRegister fromInvoice (Invoice invoice){
         return new InvoiceDtoRegister(invoice.getInvoiceId(), invoice.getUserId(),
-         invoice.getMerchantTopUpName(),invoice.getMerchantName(), invoice.getBasePrice(), invoice.getDiscount(), invoice.getTotalPrice()
+         invoice.getMerchantTopUpId(),invoice.getMerchantId(), invoice.getBasePrice(), invoice.getDiscount(), invoice.getTotalPrice()
         , invoice.getCreatedDate());
     }
 
@@ -43,8 +49,8 @@ public class InvoiceDtoRegister implements Serializable {
         return Invoice.builder()
                 .invoiceId(invoiceId)
                 .userId(userId)
-                .merchantTopUpName(merchantTopUpName)
-                .merchantName(merchantName)
+                .merchantTopUpId(merchantTopUpId)
+                .merchantId(merchantId)
                 .basePrice(basePrice)
                 .discount(discount)
                 .totalPrice(totalPrice)

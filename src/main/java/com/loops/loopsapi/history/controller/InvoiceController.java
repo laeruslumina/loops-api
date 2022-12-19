@@ -18,7 +18,7 @@ public class InvoiceController {
     private final InvoiceService invoiceService;
 
     @PostMapping("/create")
-    InvoiceDtoRegister createData (@RequestBody InvoiceDtoRegister invoiceDtoRegister){
+    InvoiceDto createData (@RequestBody InvoiceDtoRegister invoiceDtoRegister){
         return invoiceService.createInvoice(invoiceDtoRegister);
     }
 

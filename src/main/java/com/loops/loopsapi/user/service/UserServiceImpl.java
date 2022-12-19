@@ -43,10 +43,15 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public String isUserValidLogin(UserDtoLogin userDtoLogin) {
+    public APIResponse isUserValidLogin(UserDtoLogin userDtoLogin) {
         User user = userRepository.findByEmail(userDtoLogin.getEmail()).orElse(null);
-        return user != null && user.getPassword()
-                .equalsIgnoreCase(userDtoLogin.getPassword())?"Login Success":"Login Error";
+        APIResponse apiResponse = new APIResponse();
+        if (user != null && user.getPassword().equalsIgnoreCase(userDtoLogin.getPassword())) {
+            apiResponse.setValid("User Login Success");
+        } else {
+            apiResponse.setValid("User Login Failed");
+        }
+        return apiResponse;
     }
 
     @Override

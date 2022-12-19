@@ -3,7 +3,7 @@ package com.loops.loopsapi.history.service;
 import com.loops.loopsapi.history.pesistence.entity.Invoice;
 import com.loops.loopsapi.history.pesistence.repository.InvoiceDto;
 import com.loops.loopsapi.history.pesistence.repository.InvoiceRepository;
-import com.loops.loopsapi.user.service.UserService;
+import com.loops.loopsapi.topup.service.TopUpService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,33 +11,31 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class InvoiceServiceImpl implements InvoiceService{
-    private final UserService userService;
     private final InvoiceRepository invoiceRepository;
 
-    private BigDecimal getTotalPrice (InvoiceDtoRegister invoiceDtoRegister){
-        return invoiceDtoRegister.getBasePrice()
-                .subtract(invoiceDtoRegister.getDiscount());
-    }
+    private final TopUpService topUpService;
 
     private Invoice saveInvoice(InvoiceDtoRegister invoiceDtoRegister){
-        Invoice save = invoiceRepository.save(invoiceDtoRegister.toEntity());
-        return save;
+        return invoiceRepository.save(invoiceDtoRegister.toEntity());
     }
 
     @Override
-    public InvoiceDtoRegister createInvoice(InvoiceDtoRegister invoiceDtoRegister) {
-        BigDecimal totalPrice = getTotalPrice(invoiceDtoRegister);
-        invoiceDtoRegister.setTotalPrice(totalPrice);
+    public InvoiceDto createInvoice(InvoiceDtoRegister invoiceDtoRegister) {
+        //Fungsi Pembuatan Invoice
         invoiceDtoRegister.setCreatedDate(new Date());
-
-        return InvoiceDtoRegister.fromInvoice(saveInvoice(invoiceDtoRegister));
+        if (invoiceDtoRegister.getMerchantId() != null){
+            topUpService.decreaseBalance(invoiceDtoRegister.getUserId(), invoiceDtoRegister.getTotalPrice());
+        } else {
+            topUpService.addBalance(invoiceDtoRegister.getUserId(), invoiceDtoRegister.getTotalPrice());
+        }
+        InvoiceDtoRegister output = InvoiceDtoRegister.fromInvoice(saveInvoice(invoiceDtoRegister));
+        return invoiceRepository.findByInvoiceIdNative(output.getInvoiceId());
     }
 
     @Override
@@ -49,7 +47,7 @@ public class InvoiceServiceImpl implements InvoiceService{
 
     @Override
     public Page<Invoice> listOfTransaction() {
-        return (Page<Invoice>) invoiceRepository.findAll(PageRequest.of(0,5, Sort.by(Sort.Direction.DESC, "orderId")));
+        return invoiceRepository.findAll(PageRequest.of(0,5, Sort.by(Sort.Direction.DESC, "orderId")));
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface InvoiceService {
 
-    InvoiceDtoRegister createInvoice (InvoiceDtoRegister invoiceDtoRegister);
+    InvoiceDto createInvoice (InvoiceDtoRegister invoiceDtoRegister);
 
     InvoiceDtoRegister findInvoiceById (Long invoiceId);
 

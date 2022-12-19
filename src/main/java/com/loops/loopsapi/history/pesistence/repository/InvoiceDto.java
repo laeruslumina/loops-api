@@ -10,6 +10,7 @@ public interface InvoiceDto {
     Date getCreatedDate();
     BigDecimal getDiscount();
     String getMerchantName();
+    Long getMerchantId();
     String getMerchantTopUpName();
     String getOrderType();
     BigDecimal getTotalPrice();

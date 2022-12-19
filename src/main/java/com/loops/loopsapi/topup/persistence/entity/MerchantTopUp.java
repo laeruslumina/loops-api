@@ -15,11 +15,11 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BankList {
+public class MerchantTopUp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bankId;
+    private Long merchantTopUpId;
 
-    private String bankName;
+    private String merchantTopUpName;
 }

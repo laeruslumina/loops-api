@@ -1,9 +1,6 @@
 package com.loops.loopsapi.user.controller;
 
-import com.loops.loopsapi.user.service.UserDtoLogin;
-import com.loops.loopsapi.user.service.UserDtoRegister;
-import com.loops.loopsapi.user.service.UserDtoUpdate;
-import com.loops.loopsapi.user.service.UserService;
+import com.loops.loopsapi.user.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +18,9 @@ public class UserController {
     public UserDtoRegister register (@RequestBody UserDtoRegister userDtoRegister) throws IllegalAccessException { return userService.registerUser(userDtoRegister);}
 
     @PostMapping("/login")
-    public ResponseEntity <Void> login (@RequestBody UserDtoLogin userDtoLogin){
-        if (userService.isUserValidLogin(userDtoLogin)){
-            return ResponseEntity.ok(null);
-        }
-        return ResponseEntity.notFound().build();
+    public APIResponse login (@RequestBody UserDtoLogin userDtoLogin){
+
+        return userService.isUserValidLogin(userDtoLogin);
     }
 
     @GetMapping("/{id}")
