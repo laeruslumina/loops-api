@@ -6,7 +6,7 @@ import javax.validation.Valid;
 public interface UserService {
 
     UserDtoRegister registerUser(@Valid UserDtoRegister userDtoRegister) throws IllegalAccessException;
-    boolean isUserValidLogin(UserDtoLogin userDtoLogin);
+    String isUserValidLogin(UserDtoLogin userDtoLogin);
     UserDtoRegister findById(Long id);
     String updateUser(Long id,UserDtoUpdate userDtoUpdate);
 

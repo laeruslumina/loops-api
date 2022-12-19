@@ -43,9 +43,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean isUserValidLogin(UserDtoLogin userDtoLogin) {
+    public String isUserValidLogin(UserDtoLogin userDtoLogin) {
         User user = userRepository.findByEmail(userDtoLogin.getEmail()).orElse(null);
-        return user != null && user.getPassword().equalsIgnoreCase(userDtoLogin.getPassword());
+        return user != null && user.getPassword()
+                .equalsIgnoreCase(userDtoLogin.getPassword())?"Login Success":"Login Error";
     }
 
     @Override
