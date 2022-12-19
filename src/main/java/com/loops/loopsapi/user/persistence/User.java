@@ -56,7 +56,7 @@ public class User implements Serializable {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String country;
 
-    @OneToMany (mappedBy = "user")
-    private List<Invoice> invoice;
+//    @OneToMany (mappedBy = "user")
+//    private List<Invoice> invoice;
 
 }

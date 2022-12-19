@@ -23,12 +23,10 @@ public class InvoiceDtoRegister implements Serializable {
     private static final long serialVersionUID = -4340825865170044520L;
 
     private Long invoiceId;
-    private String orderType;
-
+    private Long userId; //dari FE kirim user ID
     private String merchantTopUpName;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String merchantName;
-
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private BigDecimal basePrice;
     private BigDecimal discount;
@@ -36,7 +34,7 @@ public class InvoiceDtoRegister implements Serializable {
     private Date createdDate;
 
     static InvoiceDtoRegister fromInvoice (Invoice invoice){
-        return new InvoiceDtoRegister(invoice.getInvoiceId(), invoice.getOrderType(),
+        return new InvoiceDtoRegister(invoice.getInvoiceId(), invoice.getUserId(),
          invoice.getMerchantTopUpName(),invoice.getMerchantName(), invoice.getBasePrice(), invoice.getDiscount(), invoice.getTotalPrice()
         , invoice.getCreatedDate());
     }
@@ -44,7 +42,7 @@ public class InvoiceDtoRegister implements Serializable {
     Invoice toEntity(){
         return Invoice.builder()
                 .invoiceId(invoiceId)
-                .orderType(orderType)
+                .userId(userId)
                 .merchantTopUpName(merchantTopUpName)
                 .merchantName(merchantName)
                 .basePrice(basePrice)

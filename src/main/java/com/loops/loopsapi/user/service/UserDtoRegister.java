@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,7 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Valid
 public class UserDtoRegister {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -34,7 +36,7 @@ public class UserDtoRegister {
     private String email;
 
     @NotEmpty
-    @Size(min = 8, message = "Password min 8 char")
+    @Size(min = 8, message = "Password min 8 char") //alphanumeric, camelcase
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String password;
 
@@ -51,11 +53,11 @@ public class UserDtoRegister {
         return new UserDtoRegister(user.getUserId(), user.getName(), user.getEmail(), null, user.getPhoneNumber(), user.getGender(),user.getBalance());
     }
 
-    User toEntity(String encryptedPassword){
+    User toEntity(){
         return User.builder()
                 .name(name)
                 .email(email)
-                .password(encryptedPassword)
+                .password(password)
                 .phoneNumber(phoneNumber)
                 .gender(gender)
                 .balance(balance)

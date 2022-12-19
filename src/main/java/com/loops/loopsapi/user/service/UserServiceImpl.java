@@ -4,7 +4,7 @@ import com.loops.loopsapi.user.persistence.User;
 import com.loops.loopsapi.user.persistence.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private final UserRepository userRepository;
 
-    private final BCryptPasswordEncoder passwordEncoder;
+//    private final BCryptPasswordEncoder passwordEncoder;
 
     private void validateUserExist(String email) throws IllegalAccessException {
         if (userRepository.existsByEmail(email)){
@@ -28,15 +28,14 @@ public class UserServiceImpl implements UserService{
     }
 
     private User saveUser(UserDtoRegister userDtoRegister){
-        String encryptedPassword = passwordEncoder.encode(userDtoRegister.getPassword());
+//        String encryptedPassword = passwordEncoder.encode(userDtoRegister.getPassword());
         //better di lihatkan
-        return userRepository.save(userDtoRegister.toEntity(encryptedPassword));
+        return userRepository.save(userDtoRegister.toEntity());
     }
 
     @Override
     public UserDtoRegister registerUser(@Valid UserDtoRegister userDtoRegister) throws IllegalAccessException {
         //Diliatin prosesnya
-
         validateUserExist(userDtoRegister.getEmail());
         User user = saveUser(userDtoRegister);
 
@@ -45,10 +44,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public boolean isUserValidLogin(UserDtoLogin userDtoLogin) {
-        return userRepository
-                .findByEmail(userDtoLogin.getEmail())
-                .filter(user -> passwordEncoder.matches(userDtoLogin.getPassword(), user.getPassword()))
-                .isPresent();
+        User user = userRepository.findByEmail(userDtoLogin.getEmail()).orElse(null);
+        return user != null && user.getPassword().equalsIgnoreCase(userDtoLogin.getPassword());
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.loops.loopsapi.history.service;
 
 import com.loops.loopsapi.history.pesistence.entity.Invoice;
+import com.loops.loopsapi.history.pesistence.repository.InvoiceDto;
 import com.loops.loopsapi.history.pesistence.repository.InvoiceRepository;
-import com.loops.loopsapi.user.service.UserDtoRegister;
 import com.loops.loopsapi.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -33,7 +35,7 @@ public class InvoiceServiceImpl implements InvoiceService{
     public InvoiceDtoRegister createInvoice(InvoiceDtoRegister invoiceDtoRegister) {
         BigDecimal totalPrice = getTotalPrice(invoiceDtoRegister);
         invoiceDtoRegister.setTotalPrice(totalPrice);
-
+        invoiceDtoRegister.setCreatedDate(new Date());
 
         return InvoiceDtoRegister.fromInvoice(saveInvoice(invoiceDtoRegister));
     }
@@ -48,5 +50,10 @@ public class InvoiceServiceImpl implements InvoiceService{
     @Override
     public Page<Invoice> listOfTransaction() {
         return (Page<Invoice>) invoiceRepository.findAll(PageRequest.of(0,5, Sort.by(Sort.Direction.DESC, "orderId")));
+    }
+
+    @Override
+    public List<InvoiceDto> listInvoiceDto(Long userId) {
+        return invoiceRepository.findAllByUserIdNative(userId);
     }
 }
