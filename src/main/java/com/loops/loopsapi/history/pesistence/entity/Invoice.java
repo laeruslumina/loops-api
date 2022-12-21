@@ -17,13 +17,13 @@ public class Invoice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long invoiceId; //ditampilkan x
+    private Long invoiceId;
     private Long userId;
     private Long merchantTopUpId;
-    private Long merchantId; //ditampilkan x
-    private BigDecimal basePrice; //ditampilkan -
-    private BigDecimal discount; //ditampilkan -
-    private BigDecimal totalPrice; //ditampilkan x
-    private Date createdDate; //ditampilkan x
+    private Long merchantId;
+    private BigDecimal basePrice;
+    private BigDecimal discount;
+    private BigDecimal totalPrice;
+    private Date createdDate;
 
 }
