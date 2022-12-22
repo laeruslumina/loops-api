@@ -21,6 +21,8 @@ public class BankList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bankListId;
 
+    private String bankName;
+
     @Id
     private Long VAccount;
 

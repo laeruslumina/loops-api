@@ -1,5 +1,6 @@
-package com.loops.loopsapi.topup.service;
+package com.loops.loopsapi.topup.service.impl;
 
+import com.loops.loopsapi.topup.service.TopUpService;
 import com.loops.loopsapi.user.persistence.User;
 import com.loops.loopsapi.user.persistence.UserRepository;
 import lombok.RequiredArgsConstructor;
