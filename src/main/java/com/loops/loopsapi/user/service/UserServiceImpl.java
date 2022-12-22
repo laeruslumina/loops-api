@@ -52,6 +52,7 @@ public class UserServiceImpl implements UserService{
         APIResponse apiResponse = new APIResponse();
         if (user != null && user.getPassword().equalsIgnoreCase(userDtoLogin.getPassword())) {
             apiResponse.setValid("User Login Success");
+            apiResponse.setUserId(user.getUserId());
         } else {
             apiResponse.setValid("User Login Failed");
         }
