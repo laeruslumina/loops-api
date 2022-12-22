@@ -1,5 +1,6 @@
 package com.loops.loopsapi.history.service;
 
+import com.loops.loopsapi.history.dtos.InvoiceDtoRegister;
 import com.loops.loopsapi.history.pesistence.entity.Invoice;
 import com.loops.loopsapi.history.pesistence.repository.InvoiceDto;
 import com.loops.loopsapi.history.pesistence.repository.InvoiceRepository;

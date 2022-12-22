@@ -1,4 +1,4 @@
-package com.loops.loopsapi.payment.service;
+package com.loops.loopsapi.payment.dtos;
 
 import com.loops.loopsapi.payment.persistence.models.Merchant;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,7 @@ public class MerchantDtoGet {
     private String customerName;
     private BigDecimal payAmount;
 
-    static MerchantDtoGet fromUser (Merchant merchant){
+    public static MerchantDtoGet fromUser(Merchant merchant){
         return new MerchantDtoGet(merchant.getCustomerName(), merchant.getPayAmount());
     }
 }

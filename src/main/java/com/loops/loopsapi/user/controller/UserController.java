@@ -1,9 +1,12 @@
 package com.loops.loopsapi.user.controller;
 
+import com.loops.loopsapi.user.dtos.UserDtoLogin;
+import com.loops.loopsapi.user.dtos.UserDtoRegister;
+import com.loops.loopsapi.user.dtos.UserDtoUpdate;
 import com.loops.loopsapi.user.service.*;
+import com.loops.loopsapi.utils.APIResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

@@ -26,7 +26,7 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    private String name;
+    private String name; //Mandatory field
 
     private String email;
 
@@ -39,7 +39,7 @@ public class User implements Serializable {
     private BigDecimal balance;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String address;
+    private String address; //Secondary Field
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String addressAlter;

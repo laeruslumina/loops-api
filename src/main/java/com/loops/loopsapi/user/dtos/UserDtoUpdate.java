@@ -1,4 +1,4 @@
-package com.loops.loopsapi.user.service;
+package com.loops.loopsapi.user.dtos;
 
 import com.loops.loopsapi.user.persistence.User;
 import lombok.AllArgsConstructor;

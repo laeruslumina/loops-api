@@ -1,9 +1,9 @@
 package com.loops.loopsapi.history.service;
 
+import com.loops.loopsapi.history.dtos.InvoiceDtoRegister;
 import com.loops.loopsapi.history.pesistence.entity.Invoice;
 import com.loops.loopsapi.history.pesistence.repository.InvoiceDto;
 import org.springframework.data.domain.Page;
-import com.loops.loopsapi.history.pesistence.repository.InvoiceRepository;
 
 import java.util.List;
 

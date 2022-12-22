@@ -1,7 +1,11 @@
 package com.loops.loopsapi.user.service;
 
+import com.loops.loopsapi.user.dtos.UserDtoLogin;
+import com.loops.loopsapi.user.dtos.UserDtoRegister;
+import com.loops.loopsapi.user.dtos.UserDtoUpdate;
 import com.loops.loopsapi.user.persistence.User;
 import com.loops.loopsapi.user.persistence.UserRepository;
+import com.loops.loopsapi.utils.APIResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

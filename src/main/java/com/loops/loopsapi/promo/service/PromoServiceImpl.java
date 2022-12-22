@@ -1,6 +1,6 @@
 package com.loops.loopsapi.promo.service;
 
-import com.loops.loopsapi.payment.service.MerchantDtoRegister;
+import com.loops.loopsapi.promo.dtos.PromoDtoRegister;
 import com.loops.loopsapi.promo.persistence.entity.Promo;
 import com.loops.loopsapi.promo.persistence.repository.PromoRepository;
 import lombok.RequiredArgsConstructor;

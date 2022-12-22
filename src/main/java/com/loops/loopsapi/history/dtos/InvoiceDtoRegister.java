@@ -1,4 +1,4 @@
-package com.loops.loopsapi.history.service;
+package com.loops.loopsapi.history.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.loops.loopsapi.history.pesistence.entity.Invoice;
@@ -39,13 +39,13 @@ public class InvoiceDtoRegister implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
-    static InvoiceDtoRegister fromInvoice (Invoice invoice){
+    public static InvoiceDtoRegister fromInvoice(Invoice invoice){
         return new InvoiceDtoRegister(invoice.getInvoiceId(), invoice.getUserId(),
          invoice.getMerchantTopUpId(),invoice.getMerchantId(), invoice.getBasePrice(), invoice.getDiscount(), invoice.getTotalPrice()
         , invoice.getCreatedDate());
     }
 
-    Invoice toEntity(){
+    public Invoice toEntity(){
         return Invoice.builder()
                 .invoiceId(invoiceId)
                 .userId(userId)

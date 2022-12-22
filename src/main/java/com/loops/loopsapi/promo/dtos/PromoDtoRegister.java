@@ -1,12 +1,10 @@
-package com.loops.loopsapi.promo.service;
+package com.loops.loopsapi.promo.dtos;
 
 import com.loops.loopsapi.promo.persistence.entity.Promo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
 
 /**
  * A DTO for the {@link Promo} entity
@@ -20,11 +18,11 @@ public class PromoDtoRegister {
     private String promoName;
     private String promoDetails;
 
-    static PromoDtoRegister fromPromo(Promo promo){
+    public static PromoDtoRegister fromPromo(Promo promo){
         return new PromoDtoRegister(promo.getPromoId(), promo.getPromoName(), promo.getPromoDetails());
     }
 
-    Promo toEntity(){
+    public Promo toEntity(){
         return Promo.builder()
                 .promoId(promoId)
                 .promoName(promoName)

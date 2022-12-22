@@ -1,8 +1,10 @@
 package com.loops.loopsapi.payment.controller;
 
-import com.loops.loopsapi.payment.service.MerchantDtoGet;
-import com.loops.loopsapi.payment.service.MerchantDtoRegister;
+import com.loops.loopsapi.payment.dtos.MerchantDtoCheck;
+import com.loops.loopsapi.payment.dtos.MerchantDtoGet;
+import com.loops.loopsapi.payment.dtos.MerchantDtoRegister;
 import com.loops.loopsapi.payment.service.MerchantService;
+import com.loops.loopsapi.utils.APIResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,11 @@ public class MerchantController {
     @GetMapping("/payment/{id}")
     MerchantDtoGet merchantDtoGet (@PathVariable Long id){
         return merchantService.getPayment(id);
+    }
+
+    @PostMapping ("/find")
+    APIResponse merchantDtoCheck (@RequestBody MerchantDtoCheck merchantDtoCheck){
+        return merchantService.isMerchantExist(merchantDtoCheck);
     }
 
 }

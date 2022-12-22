@@ -1,4 +1,4 @@
-package com.loops.loopsapi.topup.service;
+package com.loops.loopsapi.topup.dtos;
 
 import com.loops.loopsapi.user.persistence.User;
 import lombok.Data;

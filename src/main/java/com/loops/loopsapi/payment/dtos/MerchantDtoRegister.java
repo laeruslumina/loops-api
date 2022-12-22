@@ -1,6 +1,5 @@
-package com.loops.loopsapi.payment.service;
+package com.loops.loopsapi.payment.dtos;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.loops.loopsapi.payment.persistence.models.Merchant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,8 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -41,11 +38,11 @@ public class MerchantDtoRegister implements Serializable {
     @Column(columnDefinition = "decimal(19,2)")
     private BigDecimal payAmount;
 
-    static MerchantDtoRegister fromUser (Merchant merchant){
+    public static MerchantDtoRegister fromUser(Merchant merchant){
         return new MerchantDtoRegister(merchant.getMerchantId(), merchant.getMerchantName(), merchant.getPaymentId(), merchant.getCustomerName(), merchant.getPayAmount());
     }
 
-    Merchant toEntity(){
+    public Merchant toEntity(){
         return Merchant.builder()
                 .merchantId(merchantId)
                 .merchantName(merchantName)
