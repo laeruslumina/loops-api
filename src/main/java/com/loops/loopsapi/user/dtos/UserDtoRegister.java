@@ -1,6 +1,7 @@
 package com.loops.loopsapi.user.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.loops.loopsapi.annotation.ValidPassword;
 import com.loops.loopsapi.user.persistence.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,22 +28,22 @@ public class UserDtoRegister {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Long userId;
 
-    @NotEmpty
+    @NotEmpty(message = "Name is Mandatory")
     private String name;
 
-    @NotEmpty
-    @Email
+    @Email(message = "Wrong email format", regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+            + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")
     private String email;
 
+    @ValidPassword
     @NotEmpty
-    @Size(min = 8, message = "Password min 8 char") //alphanumeric, camelcase
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String password;
 
-    @NotEmpty
+    @NotEmpty(message = "phoneNumber is Mandatory")
     private String phoneNumber;
 
-    @NotEmpty
+    @NotEmpty(message = "gender is Mandatory")
     private String gender;
 
     @Column(columnDefinition = "decimal(19,2)")
