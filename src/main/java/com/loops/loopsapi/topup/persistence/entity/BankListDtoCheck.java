@@ -7,5 +7,5 @@ import lombok.Data;
  */
 @Data
 public class BankListDtoCheck {
-    private final Long VAccount;
+    private final Long vAccount;
 }

@@ -42,8 +42,8 @@ public class BankListServiceImpl implements BankListService {
     }
 
     @Override
-    public BankListDtoRegister getBank(Long VAccount) {
-        return bankListRepository.findById(VAccount)
+    public BankListDtoRegister getBank(Long vAccount) {
+        return bankListRepository.findById(vAccount)
                 .map(BankListDtoRegister::fromBank)
                 .orElseThrow(() -> new EntityNotFoundException("Payment Not Found"));
     }
