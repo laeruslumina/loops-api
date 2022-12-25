@@ -12,9 +12,4 @@ public class LoopsAuthApplication {
         SpringApplication.run(LoopsAuthApplication.class, args);
     }
 
-//    @Bean
-//    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-
 }

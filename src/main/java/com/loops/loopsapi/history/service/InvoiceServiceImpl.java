@@ -28,7 +28,6 @@ public class InvoiceServiceImpl implements InvoiceService{
 
     @Override
     public InvoiceMapper createInvoice(InvoiceDtoRegister invoiceDtoRegister) {
-        //Fungsi Pembuatan Invoice
         invoiceDtoRegister.setCreatedDate(new Date());
         if (invoiceDtoRegister.getMerchantId() != null){
             topUpService.decreaseBalance(invoiceDtoRegister.getUserId(), invoiceDtoRegister.getTotalPrice());

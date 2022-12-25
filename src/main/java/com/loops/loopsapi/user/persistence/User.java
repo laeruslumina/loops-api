@@ -26,7 +26,7 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    private String name; //Mandatory field
+    private String name;
 
     private String email;
 
@@ -39,7 +39,7 @@ public class User implements Serializable {
     private BigDecimal balance;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String address; //Secondary Field
+    private String address;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String addressAlter;
@@ -56,7 +56,5 @@ public class User implements Serializable {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String country;
 
-//    @OneToMany (mappedBy = "user")
-//    private List<Invoice> invoice;
 
 }
