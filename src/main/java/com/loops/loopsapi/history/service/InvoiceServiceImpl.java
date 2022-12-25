@@ -2,7 +2,7 @@ package com.loops.loopsapi.history.service;
 
 import com.loops.loopsapi.history.dtos.InvoiceDtoRegister;
 import com.loops.loopsapi.history.pesistence.entity.Invoice;
-import com.loops.loopsapi.history.pesistence.repository.InvoiceDto;
+import com.loops.loopsapi.history.pesistence.mapper.InvoiceMapper;
 import com.loops.loopsapi.history.pesistence.repository.InvoiceRepository;
 import com.loops.loopsapi.topup.service.TopUpService;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class InvoiceServiceImpl implements InvoiceService{
     }
 
     @Override
-    public InvoiceDto createInvoice(InvoiceDtoRegister invoiceDtoRegister) {
+    public InvoiceMapper createInvoice(InvoiceDtoRegister invoiceDtoRegister) {
         //Fungsi Pembuatan Invoice
         invoiceDtoRegister.setCreatedDate(new Date());
         if (invoiceDtoRegister.getMerchantId() != null){
@@ -52,7 +52,7 @@ public class InvoiceServiceImpl implements InvoiceService{
     }
 
     @Override
-    public List<InvoiceDto> listInvoiceDto(Long userId) {
+    public List<InvoiceMapper> listInvoiceDto(Long userId) {
         return invoiceRepository.findAllByUserIdNative(userId);
     }
 }

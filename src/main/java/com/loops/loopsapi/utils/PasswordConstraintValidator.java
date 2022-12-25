@@ -19,8 +19,8 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
     @SneakyThrows
     @Override
     public boolean isValid(String password, ConstraintValidatorContext context) {
-        //customizing validation messages
 
+        //customizing validation messages
         Properties props = new Properties();
 
         InputStream inputStream = getClass()

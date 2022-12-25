@@ -7,5 +7,4 @@ import java.util.Optional;
 
 public interface BankListRepository extends JpaRepository<BankList, Long> {
     Optional<BankList> findByVAccount(Long VAccount);
-
 }

@@ -1,5 +1,6 @@
 package com.loops.loopsapi.user.controller;
 
+import com.loops.loopsapi.user.dtos.UserDtoGet;
 import com.loops.loopsapi.user.dtos.UserDtoLogin;
 import com.loops.loopsapi.user.dtos.UserDtoRegister;
 import com.loops.loopsapi.user.dtos.UserDtoUpdate;
@@ -27,7 +28,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserDtoRegister findById(@PathVariable Long id){ return userService.findById(id);}
+    public UserDtoGet findById(@PathVariable Long id){ return userService.findById(id);}
 
     @PutMapping("/update/{id}")
     public  String updateUser(@PathVariable Long id, @RequestBody UserDtoUpdate userDtoUpdate){

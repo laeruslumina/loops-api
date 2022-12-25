@@ -1,9 +1,9 @@
-package com.loops.loopsapi.history.pesistence.repository;
+package com.loops.loopsapi.history.pesistence.mapper;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-public interface InvoiceDto {
+public interface InvoiceMapper {
 
     Long getInvoiceId();
     BigDecimal getBasePrice();

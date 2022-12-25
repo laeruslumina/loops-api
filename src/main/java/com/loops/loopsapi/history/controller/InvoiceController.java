@@ -1,7 +1,7 @@
 package com.loops.loopsapi.history.controller;
 
 import com.loops.loopsapi.history.pesistence.entity.Invoice;
-import com.loops.loopsapi.history.pesistence.repository.InvoiceDto;
+import com.loops.loopsapi.history.pesistence.mapper.InvoiceMapper;
 import com.loops.loopsapi.history.dtos.InvoiceDtoRegister;
 import com.loops.loopsapi.history.service.InvoiceService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class InvoiceController {
     private final InvoiceService invoiceService;
 
     @PostMapping("/create")
-    InvoiceDto createData (@RequestBody InvoiceDtoRegister invoiceDtoRegister){
+    InvoiceMapper createData (@RequestBody InvoiceDtoRegister invoiceDtoRegister){
         return invoiceService.createInvoice(invoiceDtoRegister);
     }
 
@@ -33,7 +33,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/userinvoice/{id}")
-    List<InvoiceDto> listInvoice (@PathVariable Long id){
+    List<InvoiceMapper> listInvoice (@PathVariable Long id){
         return invoiceService.listInvoiceDto(id);
     }
 

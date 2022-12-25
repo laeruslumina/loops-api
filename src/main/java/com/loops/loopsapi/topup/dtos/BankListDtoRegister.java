@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 @Builder
 public class BankListDtoRegister {
     private Long bankListId;
-
     private String bankName;
     private Long VAccount;
     private BigDecimal balance;

@@ -1,5 +1,6 @@
 package com.loops.loopsapi.user.service;
 
+import com.loops.loopsapi.user.dtos.UserDtoGet;
 import com.loops.loopsapi.user.dtos.UserDtoLogin;
 import com.loops.loopsapi.user.dtos.UserDtoRegister;
 import com.loops.loopsapi.user.dtos.UserDtoUpdate;
@@ -27,7 +28,7 @@ public class UserServiceImpl implements UserService{
 
     private void validateUserExist(String email) throws IllegalAccessException {
         if (userRepository.existsByEmail(email)){
-            throw new IllegalAccessException("Username is already exist");
+            throw new IllegalAccessException("Email already exist");
         }
     }
 
@@ -60,9 +61,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDtoRegister findById(Long id) {
+    public UserDtoGet findById(Long id) {
         return userRepository.findById(id)
-                .map(UserDtoRegister::fromUser)
+                .map(UserDtoGet::fromUser)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
 
@@ -70,28 +71,17 @@ public class UserServiceImpl implements UserService{
     public String updateUser(Long id, UserDtoUpdate userDtoUpdate) {
         User original = userRepository.findById(id).orElse(null);
             if (original != null){
-//         Normal if - else
-//            if (userDtoUpdate.getName() != null){original.setName(userDtoUpdate.getName());}
-//            Using ternary
             original.setName(userDtoUpdate.getName() != null ? userDtoUpdate.getName() : original.getName());
-//            if (userDtoUpdate.getEmail() != null){original.setEmail(userDtoUpdate.getEmail());}
             original.setEmail(userDtoUpdate.getEmail() != null ? userDtoUpdate.getEmail() : original.getEmail());
-//            if (userDtoUpdate.getPhoneNumber() != null){original.setPhoneNumber(userDtoUpdate.getPhoneNumber());}
             original.setPhoneNumber(userDtoUpdate.getPhoneNumber() != null ? userDtoUpdate.getPhoneNumber() : original.getPhoneNumber());
-//            if (userDtoUpdate.getAddress() != null){original.setAddress(userDtoUpdate.getAddress());}
             original.setAddress(userDtoUpdate.getAddress() != null ? userDtoUpdate.getAddress() : original.getAddress());
-//            if (userDtoUpdate.getAddressAlter() != null){original.setAddressAlter(userDtoUpdate.getAddressAlter());}
             original.setAddressAlter(userDtoUpdate.getAddressAlter() != null ? userDtoUpdate.getAddressAlter() : original.getAddressAlter());
-//            if (userDtoUpdate.getProvince() != null){original.setProvince(userDtoUpdate.getProvince());}
             original.setProvince(userDtoUpdate.getProvince() != null ? userDtoUpdate.getProvince() : original.getProvince());
-//            if (userDtoUpdate.getCities() != null){original.setCities(userDtoUpdate.getCities());}
             original.setCities(userDtoUpdate.getCities() != null ? userDtoUpdate.getCities() : original.getCities());
-//            if (userDtoUpdate.getPostalCode() != null){original.setPostalCode(userDtoUpdate.getPostalCode());}
             original.setPostalCode(userDtoUpdate.getPostalCode() != null ? userDtoUpdate.getPostalCode() : original.getPostalCode());
-//            if (userDtoUpdate.getCountry() != null){original.setCountry(userDtoUpdate.getCountry());}
             original.setCountry(userDtoUpdate.getCountry() != null ? userDtoUpdate.getCountry() : original.getCountry());
             } else {
-                new EntityNotFoundException("Data does not exist");
+                throw new EntityNotFoundException("User not found");
             }
             userRepository.save(original);
         return "Success";
