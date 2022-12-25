@@ -19,18 +19,18 @@ import java.math.BigDecimal;
 public class BankListDtoRegister {
     private Long bankListId;
     private String bankName;
-    private Long VAccount;
+    private Long virtualAcc;
     private BigDecimal balance;
 
     public static BankListDtoRegister fromBank(BankList bankList){
-        return new BankListDtoRegister(bankList.getBankListId(), bankList.getBankName(), bankList.getVAccount(), bankList.getBalance());
+        return new BankListDtoRegister(bankList.getBankListId(), bankList.getBankName(), bankList.getVirtualAcc(), bankList.getBalance());
     }
 
     public BankList toEntity(){
         return BankList.builder()
                 .bankListId(bankListId)
                 .bankName(bankName)
-                .VAccount(VAccount)
+                .virtualAcc(virtualAcc)
                 .balance(balance)
                 .build();
     }

@@ -24,7 +24,7 @@ public class BankList {
     private String bankName;
 
     @Id
-    private Long VAccount;
+    private Long virtualAcc;
 
     private BigDecimal balance;
 

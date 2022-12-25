@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface BankListRepository extends JpaRepository<BankList, Long> {
-    Optional<BankList> findByVAccount(Long VAccount);
+    Optional<BankList> findByVirtualAcc(Long virtualAcc);
 }

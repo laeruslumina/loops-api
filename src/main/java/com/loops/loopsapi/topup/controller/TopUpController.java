@@ -5,6 +5,7 @@ import com.loops.loopsapi.topup.persistence.entity.BankListDtoCheck;
 import com.loops.loopsapi.topup.service.BankListService;
 import com.loops.loopsapi.utils.APIResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/topup")
 public class TopUpController {
 
+    @Autowired
     private final BankListService bankListService;
 
     @PostMapping("/create")
@@ -24,8 +26,8 @@ public class TopUpController {
         return bankListService.isBankExist(bankListDtoCheck);
     }
 
-    @GetMapping("/get/{VAccount}")
-    BankListDtoRegister getBank (@PathVariable Long VAccount){
-        return bankListService.getBank(VAccount);
+    @GetMapping("/get/{virtualAcc}")
+    BankListDtoRegister getBank (@PathVariable Long virtualAcc){
+        return bankListService.getBank(virtualAcc);
     }
 }

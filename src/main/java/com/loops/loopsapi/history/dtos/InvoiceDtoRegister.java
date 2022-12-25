@@ -20,14 +20,12 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class InvoiceDtoRegister implements Serializable {
-
-    private static final long serialVersionUID = -4340825865170044520L;
+public class InvoiceDtoRegister {
 
     private Long invoiceId;
     private Long userId; //dari FE kirim user ID
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Long merchantTopUpId;
+    private Long virtualAcc;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Long merchantId;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -36,12 +34,12 @@ public class InvoiceDtoRegister implements Serializable {
     private BigDecimal discount;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private BigDecimal totalPrice;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date createdDate;
 
     public static InvoiceDtoRegister fromInvoice(Invoice invoice){
         return new InvoiceDtoRegister(invoice.getInvoiceId(), invoice.getUserId(),
-         invoice.getMerchantTopUpId(),invoice.getMerchantId(), invoice.getBasePrice(), invoice.getDiscount(), invoice.getTotalPrice()
+         invoice.getVirtualAcc(),invoice.getMerchantId(), invoice.getBasePrice(), invoice.getDiscount(), invoice.getTotalPrice()
         , invoice.getCreatedDate());
     }
 
@@ -49,7 +47,7 @@ public class InvoiceDtoRegister implements Serializable {
         return Invoice.builder()
                 .invoiceId(invoiceId)
                 .userId(userId)
-                .merchantTopUpId(merchantTopUpId)
+                .virtualAcc(virtualAcc)
                 .merchantId(merchantId)
                 .basePrice(basePrice)
                 .discount(discount)

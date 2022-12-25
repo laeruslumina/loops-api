@@ -19,7 +19,7 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long invoiceId;
     private Long userId;
-    private Long merchantTopUpId;
+    private Long virtualAcc;
     private Long merchantId;
     private BigDecimal basePrice;
     private BigDecimal discount;

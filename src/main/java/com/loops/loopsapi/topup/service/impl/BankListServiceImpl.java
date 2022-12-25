@@ -9,6 +9,7 @@ import com.loops.loopsapi.topup.persistence.repository.BankListRepository;
 import com.loops.loopsapi.topup.service.BankListService;
 import com.loops.loopsapi.utils.APIResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -17,6 +18,7 @@ import javax.persistence.EntityNotFoundException;
 @RequiredArgsConstructor
 public class BankListServiceImpl implements BankListService {
 
+    @Autowired
     private final BankListRepository bankListRepository;
 
     public BankList saveBank(BankListDtoRegister bankListDtoRegister){
@@ -30,11 +32,11 @@ public class BankListServiceImpl implements BankListService {
 
     @Override
     public APIResponse isBankExist(BankListDtoCheck bankListDtoCheck) {
-        BankList bankList = bankListRepository.findByVAccount(bankListDtoCheck.getVAccount()).orElse(null);
+        BankList bankList = bankListRepository.findByVirtualAcc(bankListDtoCheck.getVirtualAcc()).orElse(null);
         APIResponse apiResponse = new APIResponse();
         if (bankList != null ) {
             apiResponse.setValid("Check Success");
-            apiResponse.setMerchantId(bankList.getVAccount());
+            apiResponse.setMerchantId(bankList.getVirtualAcc());
         } else {
             apiResponse.setValid("Check Failed");
         }
