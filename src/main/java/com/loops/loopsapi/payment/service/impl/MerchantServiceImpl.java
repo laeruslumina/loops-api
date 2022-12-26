@@ -1,10 +1,11 @@
-package com.loops.loopsapi.payment.service;
+package com.loops.loopsapi.payment.service.impl;
 
 import com.loops.loopsapi.payment.dtos.MerchantDtoCheck;
 import com.loops.loopsapi.payment.dtos.MerchantDtoGet;
 import com.loops.loopsapi.payment.dtos.MerchantDtoRegister;
 import com.loops.loopsapi.payment.persistence.models.Merchant;
 import com.loops.loopsapi.payment.persistence.repository.MerchantRepository;
+import com.loops.loopsapi.payment.service.MerchantService;
 import com.loops.loopsapi.utils.APIResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import javax.persistence.EntityNotFoundException;
 
 @Service
 @RequiredArgsConstructor
-public class MerchantServiceImpl implements MerchantService{
+public class MerchantServiceImpl implements MerchantService {
 
     @Autowired
     private final MerchantRepository merchantRepository;

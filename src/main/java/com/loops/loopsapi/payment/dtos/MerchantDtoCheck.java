@@ -10,5 +10,5 @@ import java.io.Serializable;
  */
 @Data
 public class MerchantDtoCheck {
-    private final Long merchantId;
+    private Long merchantId;
 }

@@ -1,7 +1,7 @@
 package com.loops.loopsapi.topup.controller;
 
 import com.loops.loopsapi.topup.dtos.BankListDtoRegister;
-import com.loops.loopsapi.topup.persistence.entity.BankListDtoCheck;
+import com.loops.loopsapi.topup.dtos.BankListDtoCheck;
 import com.loops.loopsapi.topup.service.BankListService;
 import com.loops.loopsapi.utils.APIResponse;
 import lombok.RequiredArgsConstructor;

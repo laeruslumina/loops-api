@@ -1,10 +1,8 @@
 package com.loops.loopsapi.topup.service.impl;
 
-import com.loops.loopsapi.payment.dtos.MerchantDtoCheck;
-import com.loops.loopsapi.payment.dtos.MerchantDtoGet;
 import com.loops.loopsapi.topup.dtos.BankListDtoRegister;
 import com.loops.loopsapi.topup.persistence.entity.BankList;
-import com.loops.loopsapi.topup.persistence.entity.BankListDtoCheck;
+import com.loops.loopsapi.topup.dtos.BankListDtoCheck;
 import com.loops.loopsapi.topup.persistence.repository.BankListRepository;
 import com.loops.loopsapi.topup.service.BankListService;
 import com.loops.loopsapi.utils.APIResponse;
@@ -36,7 +34,7 @@ public class BankListServiceImpl implements BankListService {
         APIResponse apiResponse = new APIResponse();
         if (bankList != null ) {
             apiResponse.setValid("Check Success");
-            apiResponse.setMerchantId(bankList.getVirtualAcc());
+            apiResponse.setVirtualAcc(bankList.getVirtualAcc());
         } else {
             apiResponse.setValid("Check Failed");
         }

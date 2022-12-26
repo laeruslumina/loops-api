@@ -22,10 +22,10 @@ public class UserTest {
     @Test
     void registerTestSuccess() throws IllegalAccessException {
         UserDtoRegister userDtoRegister = new UserDtoRegister();
-        userDtoRegister.setName("mcatn");
-        userDtoRegister.setEmail("mcawn@gmail.com");
-        userDtoRegister.setPassword("Candra@123");
-        userDtoRegister.setPhoneNumber("085791475192");
+        userDtoRegister.setName("Pariz Aja");
+        userDtoRegister.setEmail("predator@gmail.com");
+        userDtoRegister.setPassword("Predator@123");
+        userDtoRegister.setPhoneNumber("0833912351912");
         userDtoRegister.setGender("Male");
 
         UserDtoRegister user = userController.register(userDtoRegister);
@@ -53,7 +53,7 @@ public class UserTest {
     void loginTestPositive(){
         UserDtoLogin userDtoLogin = new UserDtoLogin();
         userDtoLogin.setEmail("Candraaji@gmail.com");
-        userDtoLogin.setPassword("Candraaji@123");
+        userDtoLogin.setPassword("Candra@123");
         APIResponse login = userController.login(userDtoLogin);
         Assertions.assertEquals("User Login Success",login.getValid());
     }
@@ -88,11 +88,12 @@ public class UserTest {
         UserDtoUpdate userDtoUpdate = new UserDtoUpdate();
         userDtoUpdate.setAddress("lidah");
         userDtoUpdate.setAddressAlter("wiyung");
+        userDtoUpdate.setProvince("jawa timur");
         userDtoUpdate.setCities("sby");
         userDtoUpdate.setPostalCode("60213");
         userDtoUpdate.setCountry("indosiar");
 
-        String user = userController.updateUser(2L,userDtoUpdate);
+        String user = userController.updateUser(1L,userDtoUpdate);
 
         Assertions.assertEquals("Success", user);
     }

@@ -1,4 +1,4 @@
-package com.loops.loopsapi.user.service;
+package com.loops.loopsapi.user.service.impl;
 
 import com.loops.loopsapi.user.dtos.UserDtoGet;
 import com.loops.loopsapi.user.dtos.UserDtoLogin;
@@ -6,6 +6,7 @@ import com.loops.loopsapi.user.dtos.UserDtoRegister;
 import com.loops.loopsapi.user.dtos.UserDtoUpdate;
 import com.loops.loopsapi.user.persistence.User;
 import com.loops.loopsapi.user.persistence.UserRepository;
+import com.loops.loopsapi.user.service.UserService;
 import com.loops.loopsapi.utils.APIResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import javax.validation.Valid;
 @Service
 @RequiredArgsConstructor
 @Validated
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private final UserRepository userRepository;

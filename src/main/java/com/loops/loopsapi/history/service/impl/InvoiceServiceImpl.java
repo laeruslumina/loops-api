@@ -1,9 +1,10 @@
-package com.loops.loopsapi.history.service;
+package com.loops.loopsapi.history.service.impl;
 
 import com.loops.loopsapi.history.dtos.InvoiceDtoRegister;
 import com.loops.loopsapi.history.pesistence.entity.Invoice;
 import com.loops.loopsapi.history.pesistence.mapper.InvoiceMapper;
 import com.loops.loopsapi.history.pesistence.repository.InvoiceRepository;
+import com.loops.loopsapi.history.service.InvoiceService;
 import com.loops.loopsapi.topup.service.TopUpService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class InvoiceServiceImpl implements InvoiceService{
+public class InvoiceServiceImpl implements InvoiceService {
     private final InvoiceRepository invoiceRepository;
 
     private final TopUpService topUpService;

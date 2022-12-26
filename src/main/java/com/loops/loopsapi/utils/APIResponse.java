@@ -8,7 +8,7 @@ public class APIResponse {
 
     private Long userId;
     private Long merchantId;
-    private Long VAccount;
+    private Long virtualAcc;
     private Object valid;
 
     public APIResponse(){
@@ -16,6 +16,6 @@ public class APIResponse {
         this.userId = getUserId();
         this.merchantId = getMerchantId();
         this.valid = getValid();
-        this.VAccount = getVAccount();
+        this.virtualAcc = getVirtualAcc();
     }
 }

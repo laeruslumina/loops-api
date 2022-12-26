@@ -19,9 +19,8 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MerchantDtoRegister implements Serializable {
+public class MerchantDtoRegister{
 
-    private static final long serialVersionUID = -5016611933815335309L;
 
     @NotNull
     private Long merchantId;
